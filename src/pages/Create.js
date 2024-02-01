@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Typography, Button, Container, TextField, Radio, RadioGroup } from '@mui/material'
+import { Typography, Button, Container, TextField, Radio, RadioGroup, FormControlLabel, FormControl, FormLabel } from '@mui/material'
 import { createTheme, ThemeProvider } from '@mui/material';
 // import makeStyles  from '@mui/styles/makeStyles'
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
@@ -30,6 +30,7 @@ const Create = () => {
     const[details, setDetails] = useState('')
     const[titleError, setTitleError] = useState(false)
     const[detailsError, setDetailsError] = useState(false)
+    const[category, setCategory] = useState('todos')
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -44,7 +45,7 @@ const Create = () => {
         }
 
         if(title && details){
-            console.log(title, details)
+            console.log(title, details, category)
         }
     }
     // const classes = useStyles()
@@ -77,10 +78,16 @@ const Create = () => {
                 required
                 error={detailsError}
             />
-            <RadioGroup>
-                <Radio value="male" />
-                <Radio value="female"/>
-            </RadioGroup>
+            <FormControl style={{marginTop:'20px', marginBottom:'20px', display:'block' }}>
+                <FormLabel>Note Category</FormLabel>
+                <RadioGroup value={category} onChange={(e) => setCategory(e.target.value)}>
+                    <FormControlLabel value="money" control={<Radio />} label="Money"/>
+                    <FormControlLabel value="todos" control={<Radio />} label="Todos"/>
+                    <FormControlLabel value="reminders" control={<Radio />} label="Reminders"/>
+                    <FormControlLabel value="work" control={<Radio />} label="Work"/>
+                </RadioGroup>
+            </FormControl>
+
             <Button 
             onClick={() => console.log('Clicked me')}
             color='error' 
