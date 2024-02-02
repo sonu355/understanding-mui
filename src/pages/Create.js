@@ -3,6 +3,7 @@ import { Typography, Button, Container, TextField, Radio, RadioGroup, FormContro
 import { createTheme, ThemeProvider } from '@mui/material';
 // import makeStyles  from '@mui/styles/makeStyles'
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import { useNavigate } from 'react-router-dom';
 
 // const useStyles = makeStyles({
 //     btn: {
@@ -27,6 +28,7 @@ const theme = createTheme({
 
 const Create = () => {
     const[title, setTitle] = useState('')
+    const navigate = useNavigate()
     const[details, setDetails] = useState('')
     const[titleError, setTitleError] = useState(false)
     const[detailsError, setDetailsError] = useState(false)
@@ -45,7 +47,12 @@ const Create = () => {
         }
 
         if(title && details){
-            console.log(title, details, category)
+            // console.log(title, details, category)
+            fetch('http://localhost:8000/notes', {
+                method: 'POST',
+                header: {"Content-Type": "application/json"},
+                body: JSON.stringify({title, details, category})
+            }).then(() => navigate('/'))
         }
     }
     // const classes = useStyles()
