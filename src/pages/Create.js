@@ -47,7 +47,7 @@ const Create = () => {
         }
 
         if(title && details){
-            // console.log(title, details, category)
+            console.log(title, details, category)
             fetch('http://localhost:8000/notes', {
                 method: 'POST',
                 header: {"Content-Type": "application/json"},
