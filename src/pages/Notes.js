@@ -9,6 +9,15 @@ const Notes = () => {
     .then(res => res.json())
     .then(data => setNotes(data))
   }, [])
+
+  const handleDelete = async (id) => {
+    await fetch('http://localhost:8000/notes/' + id, {
+      method: 'DELETE'
+    })
+
+    const newNotes = notes.filter(note => note.id != id)
+    setNotes(newNotes)
+  }
   return (
     <>
     {/* <Grid container>
@@ -29,7 +38,7 @@ const Notes = () => {
       {notes.map(note => (
         <Grid item key={note.id} xs={12} md={6} lg={4}>
           {/* <Paper>{note.title}</Paper> */}
-          <NoteCard note={note}/>
+          <NoteCard note={note} handleDelete={handleDelete}/>
         </Grid>
       ))}
     </Grid>

@@ -2,13 +2,13 @@ import React from 'react'
 import { CardHeader, IconButton, CardContent, Card, Typography  } from '@mui/material'
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 
-const NoteCard = ({ note }) => {
+const NoteCard = ({ note, handleDelete }) => {
   return (
     <div>
       <Card elevation={5}>
         <CardHeader
           action={
-            <IconButton >
+            <IconButton onClick={() => handleDelete(note.id)}>
               <DeleteOutlinedIcon />
             </IconButton>
           }
