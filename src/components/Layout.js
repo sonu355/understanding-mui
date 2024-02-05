@@ -5,10 +5,11 @@ import { SubjectOutlined, AddCircleOutlineOutlined } from '@mui/icons-material';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 const drawerWidth = 240;
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => {
+    return {
     page: {
         background: '#f9f9f9',
-        width: '100%'
+        width: '100%',
     },
     drawer: {
         width: drawerWidth,
@@ -22,7 +23,7 @@ const useStyles = makeStyles({
     active:{
         background : 'red'
     }
-})
+}})
 
 const Layout = ({children}) => {
     const classes = useStyles()
@@ -46,7 +47,7 @@ const Layout = ({children}) => {
         <div className={classes.root}>
             <Drawer className={classes.drawer} classes={{paper: classes.drawerPaper}} variant='permanent' anchor='left'>
                 <div>
-                    <Typography variant='h5'>
+                    <Typography variant='h5' style={{padding: '16px'}}>
                         Ninja Notes
                     </Typography>
                 </div>
@@ -64,7 +65,7 @@ const Layout = ({children}) => {
                     ))}
                 </List>
             </Drawer>
-            <div className={classes.page}>
+            <div className={classes.page} style={{padding: '24px'}}>
                 {children}
             </div>
         </div>

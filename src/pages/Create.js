@@ -1,23 +1,23 @@
 import React, { useState } from 'react'
 import { Typography, Button, Container, TextField, Radio, RadioGroup, FormControlLabel, FormControl, FormLabel } from '@mui/material'
 import { createTheme, ThemeProvider } from '@mui/material';
-// import makeStyles  from '@mui/styles/makeStyles'
+import { makeStyles }  from '@mui/styles'
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { useNavigate } from 'react-router-dom';
 
-// const useStyles = makeStyles({
-//     btn: {
-//         fontSize: 60,
-//         color: 'violet',
-//         '&:hover': {
-//             backgroundColor: 'blue'
-//         }
-//     },
-//     title: {
-//         textDecoration: 'underline',
-//         marginBottom: 20
-//     }
-// })
+const useStyles = makeStyles({
+    btn: {
+        fontSize: 60,
+        color: 'violet',
+        '&:hover': {
+            backgroundColor: 'blue'
+        }
+    },
+    title: {
+        textDecoration: 'underline',
+        marginBottom: 20
+    }
+})
 const theme = createTheme({
     palette: {
         primary: {
@@ -27,6 +27,7 @@ const theme = createTheme({
 })
 
 const Create = () => {
+    // const classes  = useStyles()
     const[title, setTitle] = useState('')
     const navigate = useNavigate()
     const[details, setDetails] = useState('')
@@ -55,7 +56,6 @@ const Create = () => {
             }).then(() => navigate('/'))
         }
     }
-    // const classes = useStyles()
   return (
     <ThemeProvider theme={theme}>    
         <Container>
