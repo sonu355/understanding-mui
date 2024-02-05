@@ -1,12 +1,12 @@
 import React from 'react'
-import { Drawer, Typography, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
+import { Drawer, Typography, List, ListItem, ListItemIcon, ListItemText,AppBar, Toolbar } from '@mui/material';
 import { makeStyles } from '@mui/styles'
 import { SubjectOutlined, AddCircleOutlineOutlined } from '@mui/icons-material';
 import { useNavigate, useLocation } from 'react-router-dom';
 
+
 const drawerWidth = 240;
-const useStyles = makeStyles((theme) => {
-    return {
+const useStyles = makeStyles({
     page: {
         background: '#f9f9f9',
         width: '100%',
@@ -22,8 +22,16 @@ const useStyles = makeStyles((theme) => {
     },
     active:{
         background : 'red'
+    },
+    appbar:{
+        width: `calc(100% - ${drawerWidth}px)`,
+        left: drawerWidth,
+        position: 'relative'
+    },
+    date: {
+        flexGrow: 1
     }
-}})
+})
 
 const Layout = ({children}) => {
     const classes = useStyles()
@@ -42,9 +50,22 @@ const Layout = ({children}) => {
             Path: '/create'
         },
     ]
+    const currentDate = new Date();
+    const formattedDate = `${currentDate.getDate()} ${currentDate.toLocaleString('default', { month: 'long' })} ${currentDate.getFullYear()}`;
+
 
     return (
         <div className={classes.root}>
+            <AppBar elevation={0} color='inherit'  className={classes.appbar}>
+                <Toolbar>
+                    <Typography className={classes.date} variant='h5' style={{marginLeft:'350px' }}>
+                        Today is {formattedDate}
+                    </Typography>
+                    <Typography>
+                        Harshal
+                    </Typography>
+                </Toolbar>
+            </AppBar>
             <Drawer className={classes.drawer} classes={{paper: classes.drawerPaper}} variant='permanent' anchor='left'>
                 <div>
                     <Typography variant='h5' style={{padding: '16px'}}>
@@ -65,7 +86,7 @@ const Layout = ({children}) => {
                     ))}
                 </List>
             </Drawer>
-            <div className={classes.page} style={{padding: '24px'}}>
+            <div className={classes.page} style={{padding: '24px', marginTop:'60px'}}>
                 {children}
             </div>
         </div>
