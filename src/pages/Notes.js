@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { Grid, Paper } from '@mui/material'
+import { Grid } from '@mui/material'
 import NoteCard from '../components/NoteCard'
 
 const Notes = () => {
@@ -15,7 +15,7 @@ const Notes = () => {
       method: 'DELETE'
     })
 
-    const newNotes = notes.filter(note => note.id != id)
+    const newNotes = notes.filter(note => note.id !== id)
     setNotes(newNotes)
   }
   return (
