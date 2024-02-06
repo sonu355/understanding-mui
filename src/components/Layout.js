@@ -1,5 +1,5 @@
 import React from 'react'
-import { Drawer, Typography, List, ListItem, ListItemIcon, ListItemText,AppBar, Toolbar } from '@mui/material';
+import { Drawer, Typography, List, ListItem, ListItemIcon, ListItemText,AppBar, Toolbar, Avatar } from '@mui/material';
 import { makeStyles } from '@mui/styles'
 import { SubjectOutlined, AddCircleOutlineOutlined } from '@mui/icons-material';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -30,7 +30,10 @@ const useStyles = makeStyles({
     },
     date: {
         flexGrow: 1
-    }
+    },
+    avatar:{
+        marginLeft: '16px'
+    },
 })
 
 const Layout = ({children}) => {
@@ -56,7 +59,7 @@ const Layout = ({children}) => {
 
     return (
         <div className={classes.root}>
-            <AppBar elevation={0} color='inherit'  className={classes.appbar}>
+            <AppBar elevation={0} color='primary'  className={classes.appbar}>
                 <Toolbar>
                     <Typography className={classes.date} variant='h5' style={{marginLeft:'350px' }}>
                         Today is {formattedDate}
@@ -64,6 +67,7 @@ const Layout = ({children}) => {
                     <Typography>
                         Harshal
                     </Typography>
+                    <Avatar src='/mario-av.png'className={classes.avatar}/>
                 </Toolbar>
             </AppBar>
             <Drawer className={classes.drawer} classes={{paper: classes.drawerPaper}} variant='permanent' anchor='left'>
